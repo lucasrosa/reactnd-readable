@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { handleInitialData } from '../actions/shared'
-import { getPostsByCategory } from '../utils/api'
+import { getPostsByCategory, addPost } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
 
@@ -12,6 +12,27 @@ class App extends Component {
       console.log("posts in redux: ", posts)
       }
     )
+
+    
+    // const post = {
+    //   id: Math.random().toString(36).substr(-8),
+    //   timestamp: Date.now(),
+    //   title: "A post about life",
+    //   body: "Life is short, don't waste it",
+    //   author: "Lucas Rosa",
+    //   category: "react"
+    // }
+    // Adding a post
+    // addPost(post).then((result) => {
+    //   if (!result.error) {
+    //     console.log("Reult!: ", result)
+          
+    //   } else {
+    //     console.log("Error: ", result)
+    //   }
+    // })
+
+
   }
   render() {
     return (
