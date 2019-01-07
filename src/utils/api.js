@@ -57,3 +57,25 @@ export const addPost = (post) =>
       body: JSON.stringify(post)
     }).then(res => res.json())
       .then(data => data)
+
+export const getPost = (postId) =>
+      fetch(`${api}/posts/${postId}`, {
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+        .then(data => data)      
+
+export const voteForAPost = (postId, upVote) =>
+      fetch(`${api}/posts/${postId}`, {
+        method: 'POST',
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json'
+        },
+        body: {
+            option: upVote ? "upVote" : "downVote"
+        }
+      }).then(res => res.json())
+        .then(data => data)

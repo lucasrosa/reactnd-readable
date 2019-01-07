@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { handleInitialData } from '../actions/shared'
-import { getPostsByCategory, addPost } from '../utils/api'
+import { getPostsByCategory, addPost, getPost } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
 
@@ -13,7 +13,12 @@ class App extends Component {
       }
     )
 
-    
+    getPost("yt391mnn").then((post) => {
+      console.log("post returned: ", post)
+      }
+    )
+
+
     // const post = {
     //   id: Math.random().toString(36).substr(-8),
     //   timestamp: Date.now(),
