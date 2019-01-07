@@ -5,7 +5,8 @@ import {
   addPost, 
   getPost, 
   voteForAPost, 
-  updatePost
+  updatePost,
+  deletePost
 } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
@@ -29,10 +30,15 @@ class App extends Component {
     //   }
     // )
 
-    updatePost("yt391mnn", "Hello moto", "bambinoto").then((result) => {
-      console.log("udated: ", result)
-      }
-    )
+    // updatePost("yt391mnn", "Hello moto", "bambinoto").then((result) => {
+    //   console.log("udated: ", result)
+    //   }
+    // )
+    // deletePost("nqbg7owv").then((result) => {
+    //   console.log("removed: ", result)
+    //   }
+    // )
+
 
 
     // const post = {
