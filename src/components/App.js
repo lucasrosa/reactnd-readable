@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { handleInitialData } from '../actions/shared'
-import { getPostsByCategory, addPost, getPost, voteForAPost } from '../utils/api'
+import { 
+  getPostsByCategory, 
+  addPost, 
+  getPost, 
+  voteForAPost, 
+  updatePost
+} from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
 
@@ -22,6 +28,11 @@ class App extends Component {
     //   console.log("upvoted: ", result)
     //   }
     // )
+
+    updatePost("yt391mnn", "Hello moto", "bambinoto").then((result) => {
+      console.log("udated: ", result)
+      }
+    )
 
 
     // const post = {
