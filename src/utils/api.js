@@ -74,8 +74,8 @@ export const voteForAPost = (postId, upVote) =>
           ...headers,
           'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
             option: upVote ? "upVote" : "downVote"
-        }
+        })
       }).then(res => res.json())
         .then(data => data)
