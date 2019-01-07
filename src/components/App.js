@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { handleInitialData } from '../actions/shared'
+import { getPostsByCategory } from '../utils/api'
+import logo from '../logo.svg';
+import '../App.css';
 
 class App extends Component {
+  componentDidMount() {
+    //this.props.dispatch(handleInitialData())
+    handleInitialData()
+    getPostsByCategory('redux').then(({ posts }) => {
+      console.log("posts in redux: ", posts)
+      }
+    )
+  }
   render() {
     return (
       <div className="App">
