@@ -6,7 +6,9 @@ import {
   getPost, 
   voteForAPost, 
   updatePost,
-  deletePost
+  deletePost,
+  getPostComments,
+  addComment
 } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
@@ -24,6 +26,16 @@ class App extends Component {
       console.log("post returned: ", post)
       }
     )
+    
+    getPostComments("yt391mnn").then((comments) => {
+      console.log("comments returned: ", comments)
+      }
+    )
+
+    // addComment("yt391mnn", "A nice comment.", "Joseph").then((comments) => {
+    //   console.log("adding comment returned: ", comments)
+    //   }
+    // )
 
     // voteForAPost("yt391mnn", true).then((result) => {
     //   console.log("upvoted: ", result)

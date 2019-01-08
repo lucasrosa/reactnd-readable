@@ -9,6 +9,10 @@ const headers = {
   'Authorization': token
 }
 
+function generateUniqueId() {
+    return Math.random().toString(36).substr(-8)
+}
+
 
 export const _getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
@@ -102,4 +106,29 @@ export const deletePost = (postId) =>
         'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-        .then(data => data)          
+        .then(data => data)
+        
+export const getPostComments = (postId) =>
+    fetch(`${api}/posts/${postId}/comments`, {
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+        .then(data => data)
+
+export const addComment = (parentId, body, author) =>
+    fetch(`${api}/comments`, {
+        method: 'POST',
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id : generateUniqueId(),
+            body,
+            author,
+            parentId
+        })
+    }).then(res => res.json())
+        .then(data => data)        
