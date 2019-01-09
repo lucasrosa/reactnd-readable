@@ -8,7 +8,10 @@ import {
   updatePost,
   deletePost,
   getPostComments,
-  addComment
+  addComment,
+  getComment,
+  voteForAComment,
+  updateComment
 } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
@@ -32,6 +35,21 @@ class App extends Component {
       }
     )
 
+    getComment("wkmy50cc").then((comment) => {
+      console.log("comment returned: ", comment)
+      }
+    )
+    
+    voteForAComment("wkmy50cc", true).then((result) => {
+      console.log("comment upvoted: ", result)
+      }
+    )
+    
+    // updateComment("wkmy50cc", "A new body").then((result) => {
+    //   console.log("Comment updated:", result)
+    //   }
+    // )
+    
     // addComment("yt391mnn", "A nice comment.", "Joseph").then((comments) => {
     //   console.log("adding comment returned: ", comments)
     //   }

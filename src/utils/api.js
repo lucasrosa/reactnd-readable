@@ -131,4 +131,41 @@ export const addComment = (parentId, body, author) =>
             parentId
         })
     }).then(res => res.json())
+        .then(data => data)     
+        
+export const getComment = (commentId) =>
+    fetch(`${api}/comments/${commentId}`, {
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+        .then(data => data)
+
+
+export const voteForAComment = (commentId, upVote) =>
+    fetch(`${api}/comments/${commentId}`, {
+        method: 'POST',
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            option: upVote ? "upVote" : "downVote"
+        })
+    }).then(res => res.json())
+        .then(data => data)
+
+export const updateComment = (commentId, body) =>
+    fetch(`${api}/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            body,
+            timestamp: Date.now()
+        })
+    }).then(res => res.json())
         .then(data => data)        
