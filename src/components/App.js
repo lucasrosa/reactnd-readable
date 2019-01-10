@@ -11,7 +11,8 @@ import {
   addComment,
   getComment,
   voteForAComment,
-  updateComment
+  updateComment,
+  deleteComment
 } from '../utils/api'
 import logo from '../logo.svg';
 import '../App.css';
@@ -44,6 +45,11 @@ class App extends Component {
       console.log("comment upvoted: ", result)
       }
     )
+
+    // deleteComment("wkmy50cc").then((result) => {
+    //   console.log("comment removed: ", result)
+    //   }
+    // )
     
     // updateComment("wkmy50cc", "A new body").then((result) => {
     //   console.log("Comment updated:", result)
