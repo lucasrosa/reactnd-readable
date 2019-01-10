@@ -13,14 +13,23 @@ class List extends Component {
             </li>
           ))}
         </ul>
+        <h3 className='center'>Posts</h3>
+        <ul className='posts-list'>
+          {this.props.postsArray.map((post) => (
+            <li key={post.id}>
+              <div id={post.id}>{post.title}</div>
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
-function mapStateToProps ({ categories }) {
+function mapStateToProps ({ categories, posts }) {
   return {
-    categorieArray: Object.values(categories)
+    categorieArray: Object.values(categories),
+    postsArray: Object.values(posts)
   }
 }
 export default connect(mapStateToProps)(List)
