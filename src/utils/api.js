@@ -35,10 +35,18 @@ export function getInitialData () {
     return Promise.all([
         _getAllPosts(),
         _getAllCategories()
-    ]).then(([posts, categories]) => ({
-        posts,
-        categories
-    }))
+    ]).then(([posts, categories]) => {
+        let postsWithCorrectId = {}
+        posts.forEach((post) => {
+            postsWithCorrectId[post.id] = post
+        })
+
+        return {
+                posts: postsWithCorrectId,
+                categories
+            }
+        }   
+    )
 }
 
 export function getPostsByCategory (category) {
