@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
 import { updateCurrentCategory } from '../actions/currentCategory'
+import { withRouter } from 'react-router-dom'
 
 class List extends Component {
   handleCategoryChange = (e) => {
@@ -9,6 +10,12 @@ class List extends Component {
     const { dispatch } = this.props
 
     dispatch(updateCurrentCategory(e.target.id))
+    if (e.target.id === "all") {
+      this.props.history.push(`/`)
+    } else {
+      this.props.history.push(`/${e.target.id}`)
+    }
+    
   }
 
   // componentDidMount() {
@@ -57,4 +64,4 @@ function mapStateToProps ({ currentCategory, categories, posts }) {
     postsArray: Object.values(posts)
   }
 }
-export default connect(mapStateToProps)(List)
+export default withRouter(connect(mapStateToProps)(List))
