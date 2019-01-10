@@ -12,8 +12,10 @@ class Post extends Component {
 
     return (
       <div>
-        <h3 className='center'>{post.title}</h3>
-        
+        <h4 className='center'>{post.title}</h4>
+        <p>by {post.author}</p>
+        <p>Comments: {post.commentCount}</p>
+        <p>Score: {post.voteScore}</p>
       </div>
     )
   }

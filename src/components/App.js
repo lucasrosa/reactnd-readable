@@ -104,7 +104,7 @@ class App extends Component {
       <Router>
           <div className='container'>
               <Route path='/' exact component={List} />
-              
+              <Route path='/:category' component={List} />
           </div>
       </Router>
     );
