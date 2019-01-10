@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { handleUpvotePost } from '../actions/posts'
 
 class Post extends Component {
+  handleUpvote = (e) => {
+    e.preventDefault()
+
+    const { dispatch, post } = this.props
+
+    dispatch(handleUpvotePost(post.id))
+  }
+
   render() {
     const { post } = this.props
 
@@ -16,6 +25,8 @@ class Post extends Component {
         <p>by {post.author}</p>
         <p>Comments: {post.commentCount}</p>
         <p>Score: {post.voteScore}</p>
+        <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
+        <button name="downvote">Downvote</button>
       </div>
     )
   }
