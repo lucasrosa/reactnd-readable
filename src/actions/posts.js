@@ -36,3 +36,16 @@ export function handleUpvotePost (id) {
       })
   }
 }
+
+export function handleDownvotePost (id) {
+  return (dispatch) => {
+    dispatch(downvotePost(id)) 
+    
+    return voteForAPost(id, false)
+      .catch((e) => {
+        console.warn('Error in handleUpvotePost: ', e)
+        dispatch(upvotePost(id))
+        alert('The was an error upvoting the post. Try again.')
+      })
+  }
+}

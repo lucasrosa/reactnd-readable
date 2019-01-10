@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { handleUpvotePost } from '../actions/posts'
+import { handleUpvotePost, handleDownvotePost } from '../actions/posts'
 
 class Post extends Component {
   handleUpvote = (e) => {
     e.preventDefault()
-
     const { dispatch, post } = this.props
-
     dispatch(handleUpvotePost(post.id))
+  }
+
+  handleDownvote = (e) => {
+    e.preventDefault()
+    const { dispatch, post } = this.props
+    dispatch(handleDownvotePost(post.id))
   }
 
   render() {
@@ -26,7 +30,7 @@ class Post extends Component {
         <p>Comments: {post.commentCount}</p>
         <p>Score: {post.voteScore}</p>
         <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
-        <button name="downvote">Downvote</button>
+        <button name="downvote" onClick={this.handleDownvote}>Downvote</button>
       </div>
     )
   }
