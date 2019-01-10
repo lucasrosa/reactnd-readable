@@ -1,50 +1,52 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import { 
-  getPostsByCategory, 
-  addPost, 
-  getPost, 
-  voteForAPost, 
-  updatePost,
-  deletePost,
-  getPostComments,
-  addComment,
-  getComment,
-  voteForAComment,
-  updateComment,
-  deleteComment
-} from '../utils/api'
-import logo from '../logo.svg';
+import List from './List'
+// import { 
+//   getPostsByCategory, 
+//   addPost, 
+//   getPost, 
+//   voteForAPost, 
+//   updatePost,
+//   deletePost,
+//   getPostComments,
+//   addComment,
+//   getComment,
+//   voteForAComment,
+//   updateComment,
+//   deleteComment
+// } from '../utils/api'
 import '../App.css';
 
 class App extends Component {
   componentDidMount() {
-    //this.props.dispatch(handleInitialData())
-    handleInitialData()
-    getPostsByCategory('redux').then(({ posts }) => {
-      console.log("posts in redux: ", posts)
-      }
-    )
+    this.props.dispatch(handleInitialData())
+    // handleInitialData()
+    // getPostsByCategory('redux').then(({ posts }) => {
+    //   console.log("posts in redux: ", posts)
+    //   }
+    // )
 
-    getPost("yt391mnn").then((post) => {
-      console.log("post returned: ", post)
-      }
-    )
+    // getPost("yt391mnn").then((post) => {
+    //   console.log("post returned: ", post)
+    //   }
+    // )
     
-    getPostComments("yt391mnn").then((comments) => {
-      console.log("comments returned: ", comments)
-      }
-    )
+    // getPostComments("yt391mnn").then((comments) => {
+    //   console.log("comments returned: ", comments)
+    //   }
+    // )
 
-    getComment("wkmy50cc").then((comment) => {
-      console.log("comment returned: ", comment)
-      }
-    )
+    // getComment("wkmy50cc").then((comment) => {
+    //   console.log("comment returned: ", comment)
+    //   }
+    // )
     
-    voteForAComment("wkmy50cc", true).then((result) => {
-      console.log("comment upvoted: ", result)
-      }
-    )
+    // voteForAComment("wkmy50cc", true).then((result) => {
+    //   console.log("comment upvoted: ", result)
+    //   }
+    // )
 
     // deleteComment("wkmy50cc").then((result) => {
     //   console.log("comment removed: ", result)
@@ -99,24 +101,17 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+          <div className='container'>
+              <Route path='/' exact component={List} />
+              
+          </div>
+      </Router>
     );
   }
 }
 
-export default App;
+//<Route path='/tweet/:id' component={TweetPage} />
+//<Route path='/new' component={NewTweet} />
+
+export default connect()(App)
