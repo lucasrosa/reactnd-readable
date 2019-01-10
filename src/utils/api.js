@@ -17,7 +17,7 @@ function generateUniqueId() {
 export const _getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data)
+    .then(posts => posts)
 
 export const _getAllCategories = () =>
   fetch(`${api}/categories`, { headers })
