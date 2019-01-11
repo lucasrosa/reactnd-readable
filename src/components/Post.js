@@ -33,7 +33,7 @@ class Post extends Component {
     const { dispatch, post, full } = this.props
 
     // Only load comments in the detailed view
-    if (full) {
+    if (full && post) {
       getPostComments(post.id)
       .then((comments) => {
         dispatch(receiveComments(comments))
