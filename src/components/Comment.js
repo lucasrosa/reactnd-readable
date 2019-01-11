@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatDate } from '../utils/helpers'
+import { Link } from 'react-router-dom'
 import { handleUpvoteComment, handleDownvoteComment } from '../actions/comments'
 
 class Comment extends Component {
@@ -27,6 +28,11 @@ class Comment extends Component {
             Score: {comment.voteScore} &nbsp;
             <button name="upvoteComment" onClick={this.handleUpvote}>Upvote</button>
             <button name="downvoteComment" onClick={this.handleDownvote}>Downvote</button>
+            <p>
+            <Link to={`/comments/${comment.id}/editcomment`}>
+                Edit
+            </Link>
+            </p>
             </div>
         )
     }

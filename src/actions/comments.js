@@ -1,4 +1,4 @@
-import { addCommentOnServer, voteForAComment } from '../utils/api'
+import { addCommentOnServer, voteForAComment, updateCommentOnServer } from '../utils/api'
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
@@ -83,6 +83,30 @@ export function handleDownvoteComment (id) {
         console.warn('Error in handleDownvoteComment: ', e)
         dispatch(upvoteComment(id))
         alert('The was an error upvoting the comment. Try again.')
+      })
+  }
+}
+
+function updateComment (id, body, timestamp) {
+  return {
+    type: UPDATE_COMMENT,
+    id,
+    timestamp,
+    body
+  }
+}
+
+export function handleUpdateComment (id, body) {
+  return (dispatch) => {
+    const timestamp = Date.now()
+
+    dispatch(updateComment(id, body, timestamp)) 
+    
+    return updateCommentOnServer(id, body, timestamp)
+      .catch((e) => {
+        console.warn('Error in handleUpdatingPost: ', e)
+        dispatch(updateComment(id, body))
+        alert('The was an error updating the post. Try again.')
       })
   }
 }

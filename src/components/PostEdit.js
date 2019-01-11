@@ -58,7 +58,7 @@ class PostEdit extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-          <p>Editing post <b>{post.title}</b> <i>by {post.author} on {formatDate(post.timestamp)}</i></p>
+          <p>Editing post <b>{post.title}</b> <i>by {post.author} from {formatDate(post.timestamp)}</i></p>
           Title:
           <p>
             <input

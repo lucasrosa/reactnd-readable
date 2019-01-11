@@ -162,7 +162,7 @@ export const voteForAComment = (commentId, upVote) =>
     }).then(res => res.json())
         .then(data => data)
 
-export const updateComment = (commentId, body) =>
+export const updateCommentOnServer = (commentId, body, timestamp) =>
     fetch(`${api}/comments/${commentId}`, {
         method: 'PUT',
         headers: {
@@ -171,7 +171,7 @@ export const updateComment = (commentId, body) =>
         },
         body: JSON.stringify({
             body,
-            timestamp: Date.now()
+            timestamp
         })
     }).then(res => res.json())
         .then(data => data)        

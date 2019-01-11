@@ -6,6 +6,7 @@ import List from './List'
 import Post from './Post'
 import PostEdit from './PostEdit'
 import PostNew from './PostNew'
+import CommentEdit from './CommentEdit'
 
 // import { 
 //   getPostsByCategory, 
@@ -116,6 +117,7 @@ class App extends Component {
               render={(props) => <Post {...props} full={true} />}
             />
             <Route path='/:category/:id/edit' exact component={PostEdit} />
+            <Route path='/comments/:id/editcomment' exact component={CommentEdit} />
         </div>
       
       </Router>
