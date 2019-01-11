@@ -1,8 +1,9 @@
-import { voteForAPost, updatePostOnServer } from '../utils/api'
+import { voteForAPost, updatePostOnServer, deletePostOnServer } from '../utils/api'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export function receivePosts (posts) {
   return {
@@ -51,6 +52,26 @@ export function handleDownvotePost (id) {
   }
 }
 
+function deletePost (id) {
+  return {
+    type: DELETE_POST,
+    id,
+  }
+}
+
+export function handleDeletePost (id) {
+  return (dispatch) => {
+    dispatch(deletePost(id)) 
+    
+    return deletePostOnServer(id, false)
+      .catch((e) => {
+        console.warn('Error in handleDeletePost: ', e)
+        // TODO dispatch(addPost(id))
+        alert('The was an error deleting the post. Try again.')
+      })
+  }
+}
+
 function updatePost (id, title, body) {
   return {
     type: UPDATE_POST,
@@ -66,9 +87,9 @@ export function handleUpdatePost (id, title, body) {
     console.log("okay: ", id, title, body)
     return updatePostOnServer(id, title, body)
       .catch((e) => {
-        console.warn('Error in handleUpvotePost: ', e)
+        console.warn('Error in handleUpdatingPost: ', e)
         dispatch(updatePost(id, title, body))
-        alert('The was an error upvoting the post. Try again.')
+        alert('The was an error updating the post. Try again.')
       })
   }
 }

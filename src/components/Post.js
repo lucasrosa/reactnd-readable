@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { handleUpvotePost, handleDownvotePost } from '../actions/posts'
+import { handleUpvotePost, handleDownvotePost, handleDeletePost } from '../actions/posts'
 import { formatDate } from '../utils/helpers'
 
 class Post extends Component {
@@ -15,6 +15,12 @@ class Post extends Component {
     e.preventDefault()
     const { dispatch, post } = this.props
     dispatch(handleDownvotePost(post.id))
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault()
+    const { dispatch, post } = this.props
+    dispatch(handleDeletePost(post.id))
   }
 
   render() {
@@ -39,10 +45,14 @@ class Post extends Component {
           <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
           <button name="downvote" onClick={this.handleDownvote}>Downvote</button>
         </p>
-        <Link to={`/${post.category}/${post.id}/edit`}>
-          Edit
-        </Link>
-        
+        <p>
+          <Link to={`/${post.category}/${post.id}/edit`}>
+            Edit
+          </Link>
+        </p>
+        <p>
+          <button name="delete" onClick={this.handleDelete}>Delete</button>
+        </p>
         
       </div>
     )
