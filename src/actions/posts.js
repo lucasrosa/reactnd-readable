@@ -114,6 +114,7 @@ export function handleAddPost (title, body, author, category) {
     }  
 
   return (dispatch) => {
+    // Adding voteScore and commentCount to the local state because these are created by the server
     dispatch(addPost( { 
       ...newPost,
       voteScore: 0,

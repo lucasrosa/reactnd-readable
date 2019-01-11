@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
 import { updateCurrentCategory } from '../actions/currentCategory'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class List extends Component {
   state = {
@@ -67,7 +67,9 @@ class List extends Component {
         <h3 className='center'>Posts</h3>
         <div>
           <p>
-            <button name="add_post">Add new post</button>
+            <Link to={`/posts/new`}>
+              Add new post
+            </Link>
           </p>
           <p>
             Order by: &nbsp;
