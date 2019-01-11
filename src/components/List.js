@@ -5,6 +5,17 @@ import { updateCurrentCategory } from '../actions/currentCategory'
 import { withRouter } from 'react-router-dom'
 
 class List extends Component {
+  state = {
+    orderBy: 'date'
+  }
+
+  handleSortChange = (e) => {
+    const orderBy = e.target.value
+    this.setState(() => ({
+      orderBy
+    }))
+  }
+
   handleCategoryChange = (e) => {
     e.preventDefault()
     const { dispatch } = this.props
@@ -25,10 +36,19 @@ class List extends Component {
 
   render() {
     const { postsArray, currentCategory } = this.props
+    const { orderBy } = this.state
+
     let filteredPosts = postsArray
 
     if (currentCategory !== "all") {
       filteredPosts = postsArray.filter( post => post.category === currentCategory)
+    }
+    
+      
+    if (orderBy === "score") {
+      filteredPosts = filteredPosts.sort((a,b) => b.voteScore - a.voteScore)
+    } else {
+      filteredPosts = filteredPosts.sort((a,b) => b.timestamp - a.timestamp)
     }
     
     return (
@@ -45,6 +65,13 @@ class List extends Component {
           ))}
         </ul>
         <h3 className='center'>Posts</h3>
+        <div>
+          <p>Order by:</p>
+          <select onChange={this.handleSortChange}>
+            <option value="date">Date</option>
+            <option value="score">Score</option>
+          </select>
+        </div>
         <div className='posts-list'>
           {filteredPosts.map((post) => (
             <div key={post.id}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { handleUpvotePost, handleDownvotePost } from '../actions/posts'
+import { formatDate } from '../utils/helpers'
 
 class Post extends Component {
   handleUpvote = (e) => {
@@ -26,7 +27,7 @@ class Post extends Component {
     return (
       <div>
         <h4 className='center'>{post.title}</h4>
-        <p>by {post.author}</p>
+        <p>by {post.author} on {formatDate(post.timestamp)}</p>
         <p>Comments: {post.commentCount}</p>
         <p>Score: {post.voteScore}</p>
         <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
