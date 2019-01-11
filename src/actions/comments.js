@@ -1,10 +1,11 @@
-import { addCommentOnServer, voteForAComment, updateCommentOnServer } from '../utils/api'
+import { addCommentOnServer, voteForAComment, updateCommentOnServer, deleteCommentOnServer } from '../utils/api'
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT'
 export const UPVOTE_COMMENT = 'UPVOTE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function receiveComments (comments) {
   return {
@@ -39,9 +40,9 @@ export function handleAddComment (parentId, body, author) {
     
     return addCommentOnServer(newComment)
       .catch((e) => {
-        console.warn('Error in handleUpdatingPost: ', e)
+        console.warn('Error in handleUpdatingComment: ', e)
         //dispatch(deleteComment(id))
-        alert('The was an error updating the post. Try again.')
+        alert('The was an error updating the comment. Try again.')
       })
   }
 }
@@ -104,9 +105,29 @@ export function handleUpdateComment (id, body) {
     
     return updateCommentOnServer(id, body, timestamp)
       .catch((e) => {
-        console.warn('Error in handleUpdatingPost: ', e)
+        console.warn('Error in handleUpdatingComment: ', e)
         dispatch(updateComment(id, body))
-        alert('The was an error updating the post. Try again.')
+        alert('The was an error updating the comment. Try again.')
+      })
+  }
+}
+
+function deleteComment (id) {
+  return {
+    type: DELETE_COMMENT,
+    id,
+  }
+}
+
+export function handleDeleteComment (id) {
+  return (dispatch) => {
+    dispatch(deleteComment(id)) 
+    
+    return deleteCommentOnServer(id)
+      .catch((e) => {
+        console.warn('Error in handleDeleteComment: ', e)
+        // TODO dispatch(addPost(id))
+        alert('The was an error deleting the comment. Try again.')
       })
   }
 }

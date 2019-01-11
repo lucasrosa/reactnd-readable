@@ -177,7 +177,7 @@ export const updateCommentOnServer = (commentId, body, timestamp) =>
         .then(data => data)        
 
 
-export const deleteComment = (commentId) =>
+export const deleteCommentOnServer = (commentId) =>
     fetch(`${api}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {

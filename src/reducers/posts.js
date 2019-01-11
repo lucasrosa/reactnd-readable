@@ -33,8 +33,8 @@ export default function posts (state = {}, action) {
         }
     }
     case DELETE_POST :
-      delete state[action.id]
-      return state
+      const {[action.id]:id, ...newState} = state
+      return newState
     case ADD_POST:
       return {
         ...state,

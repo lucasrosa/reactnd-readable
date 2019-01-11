@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatDate } from '../utils/helpers'
 import { Link } from 'react-router-dom'
-import { handleUpvoteComment, handleDownvoteComment } from '../actions/comments'
+import { handleUpvoteComment, handleDownvoteComment, handleDeleteComment } from '../actions/comments'
 
 class Comment extends Component {
     handleUpvote = (e) => {
@@ -15,6 +15,14 @@ class Comment extends Component {
         e.preventDefault()
         const { dispatch, comment } = this.props
         dispatch(handleDownvoteComment(comment.id))
+    }
+
+    handleDelete = (e) => {
+        e.preventDefault()
+        const { dispatch, comment } = this.props
+        dispatch(handleDeleteComment(comment.id))
+        
+        //this.props.history.push(`/`)
     }
 
     render() {
@@ -32,6 +40,9 @@ class Comment extends Component {
             <Link to={`/comments/${comment.id}/editcomment`}>
                 Edit
             </Link>
+            </p>
+            <p>
+              <button name="delete" onClick={this.handleDelete}>Delete</button>
             </p>
             </div>
         )
