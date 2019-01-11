@@ -43,16 +43,18 @@ class Post extends Component {
 }
 
 function mapStateToProps ({posts}, props) {
-    let {id} = props
-    if (!id) {
-      id = props.match.params.id
-    }
-    
-    const post = posts[id]
-    
-    return {
-      post: post ? post : null
-    }
+  // If the id was passed as a prop, get it
+  let {id} = props
+  // If the id was not passed as a prop, then it should come from the URL
+  if (!id) {
+    id = props.match.params.id
   }
   
-  export default withRouter(connect(mapStateToProps)(Post))
+  const post = posts[id]
+  
+  return {
+    post: post ? post : null
+  }
+}
+  
+export default withRouter(connect(mapStateToProps)(Post))

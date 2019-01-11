@@ -106,7 +106,11 @@ class App extends Component {
           <div className='container'>
               <Route path='/' exact component={List} />
               <Route path='/:category' exact component={List} />
-              <Route path='/:category/:id' component={Post} />
+              {/* This has to be a rendered component since we need the 'full' prop to be passed */}
+              <Route
+                path='/:category/:id'
+                render={(props) => <Post {...props} full={true} />}
+              />
           </div>
       </Router>
     );
