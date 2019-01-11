@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { handleAddPost } from '../actions/posts'
 
 class PostNew extends Component {
@@ -67,6 +67,7 @@ class PostNew extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        <h5><Link to={`/`}>Home</Link> > New post</h5>
         <h2>Adding a new post</h2>
         <div>
           Title:

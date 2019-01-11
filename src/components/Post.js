@@ -34,6 +34,9 @@ class Post extends Component {
 
     return (
       <div>
+        {full && (
+          <h5><Link to={`/`}>Home</Link> > Post</h5>
+        )}
         <Link to={`/${post.category}/${post.id}`}>
           <h3 className='center'>{post.title}</h3>
         </Link>
