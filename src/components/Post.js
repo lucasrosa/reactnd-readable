@@ -21,6 +21,8 @@ class Post extends Component {
     e.preventDefault()
     const { dispatch, post } = this.props
     dispatch(handleDeletePost(post.id))
+
+    this.props.history.push(`/`)
   }
 
   render() {
