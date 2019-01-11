@@ -66,16 +66,18 @@ class List extends Component {
         </ul>
         <h3 className='center'>Posts</h3>
         <div>
-          <p>Order by:</p>
-          <select onChange={this.handleSortChange}>
-            <option value="date">Date</option>
-            <option value="score">Score</option>
-          </select>
+          <p>
+            Order by: &nbsp;
+            <select onChange={this.handleSortChange}>
+              <option value="date">Date</option>
+              <option value="score">Score</option>
+            </select>
+          </p>
         </div>
         <div className='posts-list'>
           {filteredPosts.map((post) => (
             <div key={post.id}>
-              <Post id={post.id} />
+              <Post id={post.id} full={false} />
             </div>
           ))}
         </div>

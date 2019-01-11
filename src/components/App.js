@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import List from './List'
+import Post from './Post'
 // import { 
 //   getPostsByCategory, 
 //   addPost, 
@@ -104,7 +105,8 @@ class App extends Component {
       <Router>
           <div className='container'>
               <Route path='/' exact component={List} />
-              <Route path='/:category' component={List} />
+              <Route path='/:category' exact component={List} />
+              <Route path='/:category/:id' component={Post} />
           </div>
       </Router>
     );

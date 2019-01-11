@@ -18,7 +18,7 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, full } = this.props
 
     if (post === null) {
         return <p>This Post doesn't exist</p>
@@ -26,8 +26,13 @@ class Post extends Component {
 
     return (
       <div>
-        <h4 className='center'>{post.title}</h4>
-        <p>by {post.author} on {formatDate(post.timestamp)}</p>
+        <Link to={`/${post.category}/${post.id}`}>
+          <h3 className='center'>{post.title}</h3>
+        </Link>
+        <p><i>by {post.author} on {formatDate(post.timestamp)}</i></p>
+        {full && (
+          <p>{post.body}</p>  
+        )}
         <p>Comments: {post.commentCount}</p>
         <p>Score: {post.voteScore}</p>
         <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
@@ -39,6 +44,7 @@ class Post extends Component {
 
 function mapStateToProps ({posts}, { id }) {
     const post = posts[id]
+    
     return {
       post: post ? post : null
     }
