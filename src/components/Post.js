@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { handleUpvotePost, handleDownvotePost, handleDeletePost } from '../actions/posts'
-import { handleAddComment } from '../actions/comments'
+import { receiveComments } from '../actions/comments'
 import { formatDate } from '../utils/helpers'
 import CommentNew from './CommentNew'
+import { getPostComments } from '../utils/api'
 
 class Post extends Component {
   handleUpvote = (e) => {
@@ -27,14 +28,18 @@ class Post extends Component {
     this.props.history.push(`/`)
   }
 
-  // handleNewComment = (body, author) => {
-  //   const { dispatch, post } = this.props
+  componentDidMount() {
+    const { dispatch, post } = this.props
 
-  //   dispatch(handleAddComment(post.id, body, author))
-  // }
+    getPostComments(post.id)
+      .then((comments) => {
+        dispatch(receiveComments(comments))
+      })
+  }
 
   render() {
-    const { post, full } = this.props
+    const { post, full, comments } = this.props
+    console.log("clmmm", comments)
     
     if (post === null) {
         return <p></p>
@@ -69,6 +74,16 @@ class Post extends Component {
         {full && (
           <div>
             <CommentNew postId={post.id} />
+            <div>
+              {comments.map((comment) => (
+                <div key={comment.id}>
+                  <div>
+                    On {formatDate(comment.timestamp)} <b>{comment.author}</b> commented:
+                    <p>{comment.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
@@ -77,7 +92,7 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({posts}, props) {
+function mapStateToProps ({posts, comments}, props) {
   // If the id was passed as a prop, get it
   let {id} = props
   // If the id was not passed as a prop, then it should come from the URL
@@ -86,9 +101,12 @@ function mapStateToProps ({posts}, props) {
   }
   
   const post = posts[id]
-  
+  // Get the comments of this post from the state
+  const commentsOfThisPost = Object.values(comments).filter((comment) => comment.parentId === id)
+
   return {
-    post: post ? post : null
+    post: post ? post : null,
+    comments: commentsOfThisPost
   }
 }
   

@@ -73,12 +73,6 @@ class CommentNew extends Component {
     )
   }
 }
-    
-function mapStateToProps ({categories}) {
   
-  return {
-    categoriesArray: Object.values(categories)
-  }
-}
   
 export default connect()(CommentNew)

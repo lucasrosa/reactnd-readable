@@ -123,7 +123,7 @@ export const getPostComments = (postId) =>
         'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-        .then(data => data)
+        .then(data => { console.log("data", data);return data})
 
 export const addCommentOnServer = (parentId, body, author) =>
     fetch(`${api}/comments`, {
