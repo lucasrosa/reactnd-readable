@@ -125,7 +125,7 @@ export const getPostComments = (postId) =>
     }).then(res => res.json())
         .then(data => data)
 
-export const addComment = (parentId, body, author) =>
+export const addCommentOnServer = (parentId, body, author) =>
     fetch(`${api}/comments`, {
         method: 'POST',
         headers: {

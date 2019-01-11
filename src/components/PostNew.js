@@ -47,7 +47,7 @@ class PostNew extends Component {
     e.preventDefault()
 
     const { title, body, author, category } = this.state
-    const { dispatch, post } = this.props
+    const { dispatch } = this.props
 
     dispatch(handleAddPost(title, body, author, category))
 

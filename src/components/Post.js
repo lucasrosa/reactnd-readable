@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { handleUpvotePost, handleDownvotePost, handleDeletePost } from '../actions/posts'
+import { handleAddComment } from '../actions/comments'
 import { formatDate } from '../utils/helpers'
+import CommentNew from './CommentNew'
 
 class Post extends Component {
   handleUpvote = (e) => {
@@ -25,9 +27,15 @@ class Post extends Component {
     this.props.history.push(`/`)
   }
 
+  // handleNewComment = (body, author) => {
+  //   const { dispatch, post } = this.props
+
+  //   dispatch(handleAddComment(post.id, body, author))
+  // }
+
   render() {
     const { post, full } = this.props
-
+    
     if (post === null) {
         return <p></p>
     }
@@ -58,7 +66,12 @@ class Post extends Component {
         <p>
           <button name="delete" onClick={this.handleDelete}>Delete</button>
         </p>
-        
+        {full && (
+          <div>
+            <CommentNew postId={post.id} />
+          </div>
+        )}
+
       </div>
     )
   }
