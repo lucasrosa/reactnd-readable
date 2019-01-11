@@ -33,9 +33,7 @@ export default function posts (state = {}, action) {
         }
     }
     case DELETE_POST :
-    console.log("before", state)
       delete state[action.id]
-    console.log("after", state)
       return state
     case ADD_POST:
       return {

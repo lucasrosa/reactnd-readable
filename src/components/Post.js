@@ -6,6 +6,7 @@ import { receiveComments } from '../actions/comments'
 import { formatDate } from '../utils/helpers'
 import CommentNew from './CommentNew'
 import { getPostComments } from '../utils/api'
+import Comment from './Comment'
 
 class Post extends Component {
   handleUpvote = (e) => {
@@ -29,17 +30,20 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, post } = this.props
+    const { dispatch, post, full } = this.props
 
-    getPostComments(post.id)
+    // Only load comments in the detailed view
+    if (full) {
+      getPostComments(post.id)
       .then((comments) => {
         dispatch(receiveComments(comments))
       })
+    }
+    
   }
 
   render() {
     const { post, full, comments } = this.props
-    console.log("clmmm", comments)
     
     if (post === null) {
         return <p></p>
@@ -73,14 +77,12 @@ class Post extends Component {
         </p>
         {full && (
           <div>
+            <h4>Comments:</h4>
             <CommentNew postId={post.id} />
             <div>
               {comments.map((comment) => (
-                <div key={comment.id}>
-                  <div>
-                    On {formatDate(comment.timestamp)} <b>{comment.author}</b> commented:
-                    <p>{comment.body}</p>
-                  </div>
+                <div>
+                  <Comment id={comment.id} />
                 </div>
               ))}
             </div>

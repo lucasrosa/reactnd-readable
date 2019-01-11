@@ -9,11 +9,6 @@ const headers = {
   'Authorization': token
 }
 
-function generateUniqueId() {
-    return Math.random().toString(36).substr(-8)
-}
-
-
 export const _getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
@@ -123,21 +118,24 @@ export const getPostComments = (postId) =>
         'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-        .then(data => { console.log("data", data);return data})
+        .then(comments => { 
+            //console.log("data", data);return data
+            let commentsWithCorrectId = {}
+            comments.forEach((comment) => {
+                commentsWithCorrectId[comment.id] = comment
+            })
 
-export const addCommentOnServer = (parentId, body, author) =>
+            return commentsWithCorrectId
+        })
+
+export const addCommentOnServer = (comment) =>
     fetch(`${api}/comments`, {
         method: 'POST',
         headers: {
         ...headers,
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            id : generateUniqueId(),
-            body,
-            author,
-            parentId
-        })
+        body: JSON.stringify(comment)
     }).then(res => res.json())
         .then(data => data)     
         
