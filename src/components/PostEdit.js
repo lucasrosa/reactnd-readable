@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import { handleUpdatePost } from '../actions/posts'
 
 class PostEdit extends Component {
   state = {
@@ -25,6 +26,22 @@ class PostEdit extends Component {
     }))
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    const { title, body } = this.state
+    const { dispatch, post } = this.props
+
+    dispatch(handleUpdatePost(post.id, title, body))
+
+    this.setState(() => ({
+      title: '',
+      body: '',
+    }))
+
+    this.props.history.push(`/${post.category}/${post.id}`)
+  }
+
   componentDidMount() {
     // Receiving values from the pros and setting to the local state of the component
     this.setState(() => ({
@@ -32,31 +49,39 @@ class PostEdit extends Component {
       body: this.props.post.body
     }))
   }
+  
 
   render() {
     const { post} = this.props
     const { title, body } = this.state
 
     return (
-      <div>
-        <p>Editing post <b>{post.title}</b> <i>by {post.author} on {formatDate(post.timestamp)}</i></p>
-        Title:
-        <p>
-          <input
-            placeholder="Post title"
-            value={title}
-            onChange={this.handleTitleChange}            
-          />
-        </p>
-        Content:
-        <p>
-          <textarea
-            placeholder="Post content"
-            value={body}
-            onChange={this.handleBodyChange}
-          />
-        </p>
-      </div>
+      <form className='new-tweet' onSubmit={this.handleSubmit}>
+        <div>
+          <p>Editing post <b>{post.title}</b> <i>by {post.author} on {formatDate(post.timestamp)}</i></p>
+          Title:
+          <p>
+            <input
+              placeholder="Post title"
+              value={title}
+              onChange={this.handleTitleChange}            
+            />
+          </p>
+          Content:
+          <p>
+            <textarea
+              placeholder="Post content"
+              value={body}
+              onChange={this.handleBodyChange}
+            />
+          </p>
+          <button
+            type='submit'
+            disabled={title === '' || body === ''}>
+              Submit
+          </button>
+        </div>
+      </form>
     )
   }
 }
