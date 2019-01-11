@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import List from './List'
 import Post from './Post'
 import PostEdit from './PostEdit'
+import PostNew from './PostNew'
 
 // import { 
 //   getPostsByCategory, 
@@ -104,18 +105,19 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
-          <div className='container'>
-              <Route path='/' exact component={List} />
-              <Route path='/:category' exact component={List} />
-              {/* This has to be a rendered component since we need the 'full' prop to be passed */}
-              <Route
-                path='/:category/:id' exact
-                render={(props) => <Post {...props} full={true} />}
-              />
-              <Route path='/:category/:id/edit' exact component={PostEdit} />
-
-          </div>
+      <Router>      
+        <div className='container'>
+            <Route path='/' exact component={List} />
+            <Route path='/:category' exact component={List} />
+            <Route path='/posts/new' exact component={PostNew} />
+            {/* This has to be a rendered component since we need the 'full' prop to be passed */}
+            <Route
+              path='/:category/:id' exact
+              render={(props) => <Post {...props} full={true} />}
+            />
+            <Route path='/:category/:id/edit' exact component={PostEdit} />
+        </div>
+      
       </Router>
     );
   }

@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, UPDATE_POST, DELETE_POST } from '../actions/posts'
+import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, UPDATE_POST, DELETE_POST, ADD_POST } from '../actions/posts'
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -37,7 +37,11 @@ export default function posts (state = {}, action) {
       delete state[action.id]
     console.log("after", state)
       return state
-        
+    case ADD_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }    
     default :
       return state
   }

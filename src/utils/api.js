@@ -59,7 +59,7 @@ export function getPostsByCategory (category) {
 
 
 
-export const addPost = (post) =>
+export const addPostOnServer = (post) =>
     fetch(`${api}/posts`, {
       method: 'POST',
       headers: {

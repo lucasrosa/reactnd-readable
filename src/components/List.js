@@ -67,6 +67,9 @@ class List extends Component {
         <h3 className='center'>Posts</h3>
         <div>
           <p>
+            <button name="add_post">Add new post</button>
+          </p>
+          <p>
             Order by: &nbsp;
             <select onChange={this.handleSortChange}>
               <option value="date">Date</option>

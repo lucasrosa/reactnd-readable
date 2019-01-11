@@ -1,9 +1,10 @@
-import { voteForAPost, updatePostOnServer, deletePostOnServer } from '../utils/api'
+import { voteForAPost, updatePostOnServer, deletePostOnServer, addPostOnServer } from '../utils/api'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const ADD_POST = 'ADD_POST'
 
 export function receivePosts (posts) {
   return {
@@ -93,3 +94,38 @@ export function handleUpdatePost (id, title, body) {
       })
   }
 }
+
+function addPost (post) {
+  return {
+    type: ADD_POST,
+    post
+  }
+}
+
+export function handleAddPost (title, body, author, category) {
+  const id =  Math.random().toString(36).substr(-8)
+  const newPost = {
+      id,
+      timestamp: Date.now(),
+      title,
+      body,
+      author,
+      category
+    }  
+
+  return (dispatch) => {
+    dispatch(addPost( { 
+      ...newPost,
+      voteScore: 0,
+      commentCount: 0
+    })) 
+    
+    return addPostOnServer(newPost)
+      .catch((e) => {
+        console.warn('Error in handleUpdatingPost: ', e)
+        dispatch(deletePost(id))
+        alert('The was an error updating the post. Try again.')
+      })
+  }
+}
+

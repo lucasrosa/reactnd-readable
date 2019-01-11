@@ -27,7 +27,7 @@ class Post extends Component {
     const { post, full } = this.props
 
     if (post === null) {
-        return <p>This Post doesn't exist</p>
+        return <p></p>
     }
 
     return (
