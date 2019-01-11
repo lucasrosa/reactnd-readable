@@ -56,11 +56,16 @@ class List extends Component {
         <h3 className='center'>Categories</h3>
         <ul className='categories-list'>
           <li key="all">
-            <div id="all" onClick={this.handleCategoryChange}>All</div>
+            <div id="all" onClick={this.handleCategoryChange} className={currentCategory === "all"?"bold":""}>All</div>
           </li>
           {this.props.categorieArray.map((category) => (
             <li key={category.name}>
-              <div id={category.name} onClick={this.handleCategoryChange}>{category.name}</div>
+              <div 
+                id={category.name} 
+                className={currentCategory === category.name?"bold":""}
+                onClick={this.handleCategoryChange}>
+                {category.name}
+              </div>
             </li>
           ))}
         </ul>
