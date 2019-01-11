@@ -42,7 +42,12 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({posts}, { id }) {
+function mapStateToProps ({posts}, props) {
+    let {id} = props
+    if (!id) {
+      id = props.match.params.id
+    }
+    
     const post = posts[id]
     
     return {
