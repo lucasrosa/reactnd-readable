@@ -56,32 +56,35 @@ class PostEdit extends Component {
     const { title, body } = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <p>Editing post <b>{post.title}</b> <i>by {post.author} from {formatDate(post.timestamp)}</i></p>
-          Title:
-          <p>
-            <input
-              placeholder="Post title"
-              value={title}
-              onChange={this.handleTitleChange}            
-            />
-          </p>
-          Content:
-          <p>
-            <textarea
-              placeholder="Post content"
-              value={body}
-              onChange={this.handleBodyChange}
-            />
-          </p>
-          <button
-            type='submit'
-            disabled={title === '' || body === ''}>
-              Submit
-          </button>
-        </div>
-      </form>
+      <div>
+        <h5><Link to={`/`}>Home</Link> > Editing a Post</h5>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <p>Editing post <b>{post.title}</b> <i>by {post.author} from {formatDate(post.timestamp)}</i></p>
+            Title:
+            <p>
+              <input
+                placeholder="Post title"
+                value={title}
+                onChange={this.handleTitleChange}            
+              />
+            </p>
+            Content:
+            <p>
+              <textarea
+                placeholder="Post content"
+                value={body}
+                onChange={this.handleBodyChange}
+              />
+            </p>
+            <button
+              type='submit'
+              disabled={title === '' || body === ''}>
+                Submit
+            </button>
+          </div>
+        </form>
+      </div>
     )
   }
 }

@@ -46,24 +46,28 @@ class CommentEdit extends Component {
     const { body } = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <p>Editing comment <i>by {comment.author} from {formatDate(comment.timestamp)}</i></p>
-          Content:
-          <p>
-            <textarea
-              placeholder="Comment content"
-              value={body}
-              onChange={this.handleBodyChange}
-            />
-          </p>
-          <button
-            type='submit'
-            disabled={ body === ''}>
-              Submit
-          </button>
-        </div>
-      </form>
+      <div>
+        <h5><Link to={`/`}>Home</Link> > Editing a Comment</h5>
+      
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <p>Editing comment <i>by {comment.author} from {formatDate(comment.timestamp)}</i></p>
+            Content:
+            <p>
+              <textarea
+                placeholder="Comment content"
+                value={body}
+                onChange={this.handleBodyChange}
+              />
+            </p>
+            <button
+              type='submit'
+              disabled={ body === ''}>
+                Submit
+            </button>
+          </div>
+        </form>
+      </div>
     )
   }
 }
