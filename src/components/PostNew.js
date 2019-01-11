@@ -7,7 +7,7 @@ class PostNew extends Component {
   state = {
     title: '',
     body: '',
-    category: '',
+    category: this.props.categoriesArray[0].name,
     author: ''
   }
 
