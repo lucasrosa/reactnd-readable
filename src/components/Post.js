@@ -81,7 +81,7 @@ class Post extends Component {
             <CommentNew postId={post.id} />
             <div>
               {comments.map((comment) => (
-                <div>
+                <div key={comment.id}>
                   <Comment id={comment.id} />
                 </div>
               ))}

@@ -4,22 +4,32 @@ import { formatDate } from '../utils/helpers'
 import { handleUpvoteComment, handleDownvoteComment } from '../actions/comments'
 
 class Comment extends Component {
+    handleUpvote = (e) => {
+        e.preventDefault()
+        const { dispatch, comment } = this.props
+        dispatch(handleUpvoteComment(comment.id))
+    }
 
+    handleDownvote = (e) => {
+        e.preventDefault()
+        const { dispatch, comment } = this.props
+        dispatch(handleDownvoteComment(comment.id))
+    }
 
-  render() {
-    const { comment } = this.props
+    render() {
+        const { comment } = this.props
 
-    return (
-      <div>
-        <hr></hr>
-        On {formatDate(comment.timestamp)} <b>{comment.author}</b> commented:
-        <p>{comment.body}</p>
-        Score: {comment.voteScore} &nbsp;
-        <button name="upvoteComment" onClick={this.handleUpvoteComment}>Upvote</button>
-        <button name="downvoteComment" onClick={this.handleDownvoteComment}>Downvote</button>
-      </div>
-    )
-  }
+        return (
+            <div>
+            <hr></hr>
+            On {formatDate(comment.timestamp)} <b>{comment.author}</b> commented:
+            <p>{comment.body}</p>
+            Score: {comment.voteScore} &nbsp;
+            <button name="upvoteComment" onClick={this.handleUpvote}>Upvote</button>
+            <button name="downvoteComment" onClick={this.handleDownvote}>Downvote</button>
+            </div>
+        )
+    }
 }
   
   
