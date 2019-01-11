@@ -34,9 +34,16 @@ class Post extends Component {
           <p>{post.body}</p>  
         )}
         <p>Comments: {post.commentCount}</p>
-        <p>Score: {post.voteScore}</p>
-        <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
-        <button name="downvote" onClick={this.handleDownvote}>Downvote</button>
+        <p>
+          Score: {post.voteScore} &nbsp;
+          <button name="upvote" onClick={this.handleUpvote}>Upvote</button>
+          <button name="downvote" onClick={this.handleDownvote}>Downvote</button>
+        </p>
+        <Link to={`/${post.category}/${post.id}/edit`}>
+          Edit
+        </Link>
+        
+        
       </div>
     )
   }

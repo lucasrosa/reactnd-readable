@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import List from './List'
 import Post from './Post'
+import PostEdit from './PostEdit'
+
 // import { 
 //   getPostsByCategory, 
 //   addPost, 
@@ -108,9 +110,11 @@ class App extends Component {
               <Route path='/:category' exact component={List} />
               {/* This has to be a rendered component since we need the 'full' prop to be passed */}
               <Route
-                path='/:category/:id'
+                path='/:category/:id' exact
                 render={(props) => <Post {...props} full={true} />}
               />
+              <Route path='/:category/:id/edit' exact component={PostEdit} />
+
           </div>
       </Router>
     );
