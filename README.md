@@ -1,8 +1,8 @@
 
-#Requirements
+# Requirements
 ## Back-end server
-This App requires the Back-end server [https://github.com/udacity/reactnd-project-readable-starter/tree/master/api-server](api-server)
-to be running on the same machine on http://localhost:3001/ .
+This App requires the Back-end server to be running on the same machine on http://localhost:3001/ .
+The code can be downloaded from https://github.com/udacity/reactnd-project-readable-starter/tree/master/api-server
 
 ## Available Commands
 
