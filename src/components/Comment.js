@@ -20,7 +20,7 @@ class Comment extends Component {
     handleDelete = (e) => {
         e.preventDefault()
         const { dispatch, comment } = this.props
-        dispatch(handleDeleteComment(comment.id))
+        dispatch(handleDeleteComment(comment.id, comment.parentId))
         
         //this.props.history.push(`/`)
     }

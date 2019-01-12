@@ -131,12 +131,13 @@ function deleteComment (id) {
   }
 }
 
-export function handleDeleteComment (id) {
+export function handleDeleteComment (id, parentId) {
   return (dispatch) => {
     dispatch(deleteComment(id)) 
-    //dispatch(increaseCommentCountOfPost(parentId))?
+    dispatch(decreaseCommentCountOfPost(parentId))
     return deleteCommentOnServer(id)
       .catch((e) => {
+        dispatch(increaseCommentCountOfPost(parentId))
         console.warn('Error in handleDeleteComment: ', e)
         // TODO dispatch(addPost(id))
         alert('The was an error deleting the comment. Try again.')
