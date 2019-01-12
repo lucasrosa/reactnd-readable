@@ -1,4 +1,7 @@
 
+## Readable project
+ Readable is a content and comment web app. Users will are able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users are also be able to edit and delete posts and comments.
+
 ## Requirements
 ### Back-end server
 This App requires the Back-end server to be running on the same machine on http://localhost:3001/ .
