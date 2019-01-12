@@ -8,20 +8,6 @@ import PostEdit from './PostEdit'
 import PostNew from './PostNew'
 import CommentEdit from './CommentEdit'
 
-// import { 
-//   getPostsByCategory, 
-//   addPost, 
-//   getPost, 
-//   voteForAPost, 
-//   updatePost,
-//   deletePost,
-//   getPostComments,
-//   addComment,
-//   getComment,
-//   voteForAComment,
-//   updateComment,
-//   deleteComment
-// } from '../utils/api'
 import '../App.css';
 
 class App extends Component {

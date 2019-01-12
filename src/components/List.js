@@ -29,11 +29,6 @@ class List extends Component {
     
   }
 
-  // componentDidMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(updateCurrentCategory("redux"))
-  // }
-
   render() {
     const { postsArray, currentCategory } = this.props
     const { orderBy } = this.state

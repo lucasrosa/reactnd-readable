@@ -30,7 +30,6 @@ class CommentNew extends Component {
     const { body, author } = this.state
     const { dispatch, postId } = this.props
 
-    console.log("postid", postId)
     dispatch(handleAddComment(postId, body, author))
 
     this.setState(() => ({

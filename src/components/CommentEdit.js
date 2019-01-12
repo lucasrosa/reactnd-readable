@@ -21,7 +21,6 @@ class CommentEdit extends Component {
     e.preventDefault()
 
     const { body } = this.state
-    console.log("bode", body)
     const { dispatch, comment } = this.props
 
     dispatch(handleUpdateComment(comment.id, body))
