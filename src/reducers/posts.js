@@ -1,4 +1,13 @@
-import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, UPDATE_POST, DELETE_POST, ADD_POST } from '../actions/posts'
+import { 
+  RECEIVE_POSTS, 
+  UPVOTE_POST, 
+  DOWNVOTE_POST, 
+  UPDATE_POST, 
+  DELETE_POST, 
+  ADD_POST, 
+  INCREASE_COMMENT_COUNT_OF_POST,
+  DECREASE_COMMENT_COUNT_OF_POST
+} from '../actions/posts'
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -40,6 +49,22 @@ export default function posts (state = {}, action) {
         ...state,
         [action.post.id]: action.post
       }    
+    case INCREASE_COMMENT_COUNT_OF_POST :
+      return {
+        ...state,
+        [action.id] : {
+          ...state[action.id],
+          commentCount: state[action.id].commentCount + 1
+        }
+      }
+    case DECREASE_COMMENT_COUNT_OF_POST :
+      return {
+        ...state,
+        [action.id] : {
+          ...state[action.id],
+          commentCount: state[action.id].commentCount - 1
+        }
+      }  
     default :
       return state
   }

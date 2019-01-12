@@ -1,4 +1,14 @@
-import { addCommentOnServer, voteForAComment, updateCommentOnServer, deleteCommentOnServer } from '../utils/api'
+import { 
+  addCommentOnServer, 
+  voteForAComment, 
+  updateCommentOnServer, 
+  deleteCommentOnServer
+} from '../utils/api'
+
+import {
+  increaseCommentCountOfPost,
+  decreaseCommentCountOfPost
+} from './posts'
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
@@ -37,10 +47,12 @@ export function handleAddComment (parentId, body, author) {
       ...newComment,
       voteScore: 0
     })) 
+    dispatch(increaseCommentCountOfPost(parentId))
     
     return addCommentOnServer(newComment)
       .catch((e) => {
         console.warn('Error in handleUpdatingComment: ', e)
+        dispatch(decreaseCommentCountOfPost(parentId))
         //dispatch(deleteComment(id))
         alert('The was an error updating the comment. Try again.')
       })
@@ -122,7 +134,7 @@ function deleteComment (id) {
 export function handleDeleteComment (id) {
   return (dispatch) => {
     dispatch(deleteComment(id)) 
-    
+    //dispatch(increaseCommentCountOfPost(parentId))?
     return deleteCommentOnServer(id)
       .catch((e) => {
         console.warn('Error in handleDeleteComment: ', e)

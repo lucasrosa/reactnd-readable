@@ -5,6 +5,23 @@ export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const ADD_POST = 'ADD_POST'
+export const INCREASE_COMMENT_COUNT_OF_POST = 'INCREASE_COMMENT_COUNT_OF_POST'
+export const DECREASE_COMMENT_COUNT_OF_POST = 'DECREASE_COMMENT_COUNT_OF_POST'
+
+export function increaseCommentCountOfPost (id) {
+  return {
+    type: INCREASE_COMMENT_COUNT_OF_POST,
+    id,
+  }
+}
+export function decreaseCommentCountOfPost (id) {
+  return {
+    type: DECREASE_COMMENT_COUNT_OF_POST,
+    id,
+  }
+}
+
+
 
 export function receivePosts (posts) {
   return {
