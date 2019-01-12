@@ -125,7 +125,4 @@ class App extends Component {
   }
 }
 
-//<Route path='/tweet/:id' component={TweetPage} />
-//<Route path='/new' component={NewTweet} />
-
 export default connect()(App)
