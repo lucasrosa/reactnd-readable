@@ -7,6 +7,7 @@ import { formatDate } from '../utils/helpers'
 import CommentNew from './CommentNew'
 import { getPostComments } from '../utils/api'
 import Comment from './Comment'
+import PostNotFound from './PostNotFound'
 
 class Post extends Component {
   handleUpvote = (e) => {
@@ -46,8 +47,10 @@ class Post extends Component {
     const { post, full, comments } = this.props
     
     if (post === null) {
-        return <p></p>
+         return <PostNotFound />
     }
+
+
 
     return (
       <div>
